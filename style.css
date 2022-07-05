@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+    background: rgb(226, 222, 222);
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header {
+    background: rgba(156, 153, 153, 0.2);
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    display: flex;
+    background: rgba(156, 153, 153, 0.2);
+    margin-top: auto;
+    justify-content: space-around;
+    padding: 8px;
+    width: 100%;
+}
