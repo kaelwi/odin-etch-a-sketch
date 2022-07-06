@@ -43,6 +43,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-end;
     width: 15%;
     height: 100%;
     gap: 1%;
