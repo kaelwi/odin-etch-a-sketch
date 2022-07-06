@@ -10,6 +10,9 @@ const color = document.getElementById('color');
 const clear = document.getElementById('clear');
 const size = document.getElementById('size');
 
+/***************************
+ * Create grid with dimension size *
+ **************************/
 function createGrid(size) {
     while (grid.firstChild) {
         grid.removeChild(grid.lastChild);
@@ -19,12 +22,42 @@ function createGrid(size) {
 
     for (let i = 0; i < size*size; i++) {
         let div = document.createElement('div');
-        div.style.border = '1px solid #e2dede';
+        div.style.background = '#ffffff';
         document.getElementById('grid').appendChild(div);
     }
 }
 
-createGrid(size.value);
+function setRainbowColor() {
+    console.log(color.value);
+    let r = color.value.slice(1, 3);
+    let g = color.value.slice(3, 5);
+    let b = color.value.slice(5, 7);
+    let colors = [r, g, b];
+
+    
+    colors.forEach( (color, index) => {
+        let random = Math.round(Math.random() * (20 - (-20)) + (-20));
+
+        if ((parseInt(color, 16) + random > 255) || (parseInt(color, 16) + random < 0)) {
+            colors[index] = parseInt(color, 16) - random;
+        } else {
+            colors[index] = parseInt(color, 16) + random;
+        }
+    })
+
+    let hexColor = rgbToHex(colors[0], colors[1], colors[2]);
+    color.value = hexColor;
+    bgr = hexColor;
+}
+
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+  
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
 
 grid.addEventListener('mousedown', function(e) {
     isDrawing = true;
@@ -75,43 +108,15 @@ size.addEventListener('change', () => {
     createGrid(size.value);
 })
 
-function setRainbowColor() {
-    console.log(color.value);
-    let r = color.value.slice(1, 3);
-    let g = color.value.slice(3, 5);
-    let b = color.value.slice(5, 7);
-    let colors = [r, g, b];
 
-    
-    colors.forEach( (color, index) => {
-        let random = Math.round(Math.random() * (20 - (-20)) + (-20));
-
-        if ((parseInt(color, 16) + random > 255) || (parseInt(color, 16) + random < 0)) {
-            colors[index] = parseInt(color, 16) - random;
-        } else {
-            colors[index] = parseInt(color, 16) + random;
-        }
-    })
-
-    let hexColor = rgbToHex(colors[0], colors[1], colors[2]);
-    color.value = hexColor;
-    bgr = hexColor;
-}
-
-function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
-}
-  
-function rgbToHex(r, g, b) {
-    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
 
 rainbow.addEventListener('click', () => {
     document.getElementById(mode).classList.toggle('selected');
     rainbow.classList.toggle('selected');
     mode = 'rainbow';
 })
+
+createGrid(size.value);
 
 
 
