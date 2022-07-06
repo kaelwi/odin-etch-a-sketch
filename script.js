@@ -7,3 +7,24 @@ function createGrid() {
 }
 
 createGrid();
+
+let mode = 'normal';
+let isDrawing = false;
+
+const grid = document.getElementById('grid');
+
+grid.addEventListener('mousedown', function(e) {
+    isDrawing = true;
+    e.target.style.background = 'black';
+})
+
+grid.addEventListener('mousemove', function(e) {
+    if (isDrawing) {
+        e.target.style.background = 'black';
+    }
+})
+
+grid.addEventListener('mouseup', function(e) {
+    isDrawing = false;
+})
+
