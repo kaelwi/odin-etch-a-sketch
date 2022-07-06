@@ -1,13 +1,3 @@
-function createGrid() {
-    for (let i = 0; i < 16*16; i++) {
-        let div = document.createElement('div');
-        div.style.border = '1px solid black';
-        document.getElementById('grid').appendChild(div);
-    }
-}
-
-createGrid();
-
 let mode = 'normal';
 let bgr = '#000000';
 let isDrawing = false;
@@ -18,6 +8,23 @@ const rainbow = document.getElementById('rainbow');
 const erase = document.getElementById('erase');
 const color = document.getElementById('color');
 const clear = document.getElementById('clear');
+const size = document.getElementById('size');
+
+function createGrid(size) {
+    while (grid.firstChild) {
+        grid.removeChild(grid.lastChild);
+    }
+    
+    document.documentElement.style.setProperty("--columns-row", size);
+
+    for (let i = 0; i < size*size; i++) {
+        let div = document.createElement('div');
+        div.style.border = '1px solid #e2dede';
+        document.getElementById('grid').appendChild(div);
+    }
+}
+
+createGrid(size.value);
 
 grid.addEventListener('mousedown', function(e) {
     isDrawing = true;
@@ -51,6 +58,10 @@ clear.addEventListener('click', () => {
     divs.forEach (div => {
         div.style.background = '#ffffff';
     });
+})
+
+size.addEventListener('change', () => {
+    createGrid(size.value);
 })
 
 
