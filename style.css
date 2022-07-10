@@ -1,8 +1,11 @@
 html, body {
-    height: 100%;
     background: rgb(239, 240, 202);
     margin: 0px;
     padding: 0px;
+}
+
+html {
+    height: 100%;
 }
 
 body {
@@ -10,6 +13,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    min-height: 100%;
 }
 
 header {
@@ -37,6 +41,8 @@ main {
     gap: 5%;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
 }
 
 #menu {
@@ -46,7 +52,7 @@ main {
     align-items: flex-end;
     width: 15%;
     height: 100%;
-    gap: 1%;
+    gap: 2px;
 }
 
 #grid {
@@ -62,8 +68,9 @@ main {
 #menu * {
     width: 110px;
     padding: 3px;
-    background: rgb(226, 222, 222);
+    background: rgba(104, 146, 209, 0.2);
     border: 1px solid rgba(104, 146, 209, 0.2);
+    border-radius: 5px;
 }
 
 .selected {

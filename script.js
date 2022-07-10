@@ -34,10 +34,11 @@ function setRainbowColor() {
     let b = color.value.slice(5, 7);
     let colors = [r, g, b];
 
-    
+    // randomly change each color channel by +/- 20
     colors.forEach( (color, index) => {
         let random = Math.round(Math.random() * (20 - (-20)) + (-20));
 
+        // check for over-/underflow (color range 0-255)
         if ((parseInt(color, 16) + random > 255) || (parseInt(color, 16) + random < 0)) {
             colors[index] = parseInt(color, 16) - random;
         } else {
